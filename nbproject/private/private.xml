@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/UserBundle/Resources/views/Frontend/Registration/register.html.twig</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Controller/Frontend/BookingController.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/UserBundle/Controller/Frontend/RegistrationController.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Resources/views/Frontend/Listing/new.html.twig</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Model/BaseBooking.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Resources/views/Frontend/Booking/new.html.twig</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Entity/Booking.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/UserBundle/Resources/views/Frontend/Common/_register.html.twig</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Resources/views/Frontend/Booking/_form_payment_card.html.twig</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Form/Handler/Frontend/BookingFormHandler.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Model/Manager/BookingManager.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Event/BookingEvent.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Event/BookingValidateEvent.php</file>
+            <file>file:/home/dhiraj/Desktop/html/koduteenus/src/Cocorico/CoreBundle/Event/BookingFormEvents.php</file>
+        </group>
+    </open-files>
+</project-private>

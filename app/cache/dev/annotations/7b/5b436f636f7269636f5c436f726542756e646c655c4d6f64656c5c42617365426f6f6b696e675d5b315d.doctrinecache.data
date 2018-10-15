@@ -1,0 +1,2 @@
+0
+a:2:{i:0;O:49:"Cocorico\CoreBundle\Validator\Constraints\Booking":2:{s:7:"payload";N;s:6:"groups";a:1:{i:0;s:3:"new";}}i:1;O:37:"Doctrine\ORM\Mapping\MappedSuperclass":1:{s:15:"repositoryClass";N;}}

@@ -1,0 +1,150 @@
+<!-- payment-method -->
+<div class="form-payment">
+    <fieldset>
+        <legend class="hidden">form-payment</legend>
+        <div class="head">
+            <h2>Entering credit card information:*</h2>    
+            <div class="form-total">
+                <span class="price">
+                    Pay:
+                    <strong data-id="total-amount">{{ fee_as_asker }}</strong>
+                    <input type="hidden" id="amount" name="amount" value="{{ fee_as_asker|replace({'€': ''}) }}" disabled>
+                    <small>{{ vatInclusionText(app.request.getLocale(), null, true) }}</small>
+                                       
+                </span>
+            </div>
+        </div>
+
+        <p>We do not store your card number, only the payment operator stores it.
+          </p>
+
+        <div class="card-type">
+            <span class="title">Credit card types:</span>
+
+            <ul class="cards-list list-inline">
+                <li>
+                    <label for="visa">
+                        <span class="hidden">visa</span>
+                        <div class="img-holder">
+                            </div>
+                        <img src="/images/card-visa.png" alt="visa card"
+                             class="img">
+                    </label>
+                </li>
+                <li>
+                    <label for="master">
+                        <span class="hidden">master card</span>
+                        <img src="/images/card-master.png"
+                             alt="master card"
+                             class="img">
+                    </label>
+                </li>
+                <li>
+                    <label for="cb">
+                        <span class="hidden">cb card</span>
+                        <img src="/images/card-cb.png" alt="visa cb"
+                             class="img">
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-holder">
+            <div class="row">
+            <div class="col-md-4">
+                    
+                <span class="label">
+                        <label for="cardNumber" class="required">
+                                    Card number:
+                                        <span>*</span></label>
+
+                                    </span>
+
+                <div class="field-holder">
+                    <input type="text" id="cardNumber" name="cardNumber" required="required" maxlength="30" class="form-control" value="4242424242424242" disabled />
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                    
+                <span class="label">
+                        <label for="cardHolder" class="required">
+                                    Card holder name:
+                                        <span>*</span></label>
+
+                                    </span>
+
+                <div class="field-holder">
+                    <input type="text" id="cardHolder" name="cardHolder" required="required" maxlength="80" class="form-control" value="test name" disabled />
+                </div>
+            </div>
+            </div>
+            <br clear="all">
+            <div class="row">
+            <div class="col-md-4">                    
+                    
+                <span class="label">
+                        <label for="cardExpirationMonth" class="required">
+                                    Expiration month:
+                                        <span>*</span></label>
+                </span>
+                
+                <input type="text" id="cardExpirationMonth" name="cardExpirationMonth" required="required" maxlength="2" class="form-control split-input" placeholder="Month (MM)" width="2" value="12" disabled />
+            </div>
+            <div class="col-md-4">
+            
+                <span class="label">
+                        <label for="cardExpirationMonth" class="required">
+                                    Expiration year:
+                                        <span>*</span></label>
+                </span>
+
+                <input type="text" id="cardExpirationYear" name="cardExpirationYear" required="required" maxlength="2" class="form-control split-input" placeholder="Year (YY)" value="21" disabled />
+            </div>
+            <div class="col-md-4">        
+                <span class="label">
+                        <label for="cardCvx" class="required">
+                                    CVV:
+                                        <span>*</span></label>
+                    <button title="Please tell me you already know what the CVV is... :)"
+                            data-placement="right" data-toggle="tooltip"
+                            class="tooltip-button" type="button" data-original-title="">?
+                    </button>
+                </span>
+
+                <div class="field-holder">
+                    <input type="text" id="cardCvv" name="cardCvv" required="required" maxlength="5" class="form-control" placeholder="###" value="123" disabled />
+                </div>
+            </div>
+            </div>
+        </div>
+    </fieldset>
+</div>                            
+<!-- payment-method -->      
+<script type="text/javascript">
+        $("#cardExpirationMonth, #cardExpirationYear").on('change', function(e) {
+            if ($(this).val().length < 2) { 
+                $(this).val("0" + $(this).val());
+            } 
+        });
+        $('input').keypress(function() {
+            if ($('#cardCvv').val()) {
+                console.log($('#cardCvv').val());
+            }
+            if (
+                $('#cardHolder').val() &&
+                $('#cardExpirationMonth').val() &&
+                $('#cardExpirationYear').val()
+            ) {
+                console.log('here');
+            }
+            if ($('#cardNumber').val()) {
+                console.log('good');
+            };
+        });
+    </script>
+    {% javascripts
+    '@TroopersMangopayBundle/Resources/js/mangopay.js'
+%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}

@@ -1,0 +1,139 @@
+{% extends '::base.html.twig' %}
+
+{%- block meta_title -%}
+    {% if app.Request.host == 'localhost' %}
+          {{ 'Home' ~ " - " ~ cocorico_site_name }} 
+    {% else %}
+          {# {{ 'home.meta_title'|trans({}, 'cocorico_meta') ~ " - " ~ cocorico_site_name }}  #}
+          {{ 'Home'|trans({}, 'cocorico_meta') ~ " - " ~ cocorico_site_name }}
+    {% endif %}       
+{%- endblock -%}
+
+{%- block meta_description -%}
+    {{ 'home.meta_desc'|trans({}, 'cocorico_meta') }}
+{%- endblock -%}
+
+{% block theme %}home-page{% endblock %}
+
+{% block layout %}
+    {% embed '@CocoricoCore/Frontend/layout.html.twig' %}
+
+        {% trans_default_domain 'cocorico_home' %}
+
+        {% block sub_header %}
+            {#<!-- visual -->#}
+            <div class="visual text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-8 col-lg-push-2">
+                            <div class="title-holder">
+                                <div class="title-frame">
+                                    <h1>
+                                        <span class="text">
+                                            Someone waiting to help you
+                                        </span>
+                                        <span class="thin-text"> 
+                                            from your neighbourhood
+                                        </span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:searchHomeForm')) }}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block main %}
+            <!-- infoarea -->
+            <div class="infoarea container">
+                <div class="row">
+                    <!-- info-box -->
+                    <div class="col-xs-12 col-sm-6 col-md-4 info-box">
+                        <img src="{{ asset('images/icon1.png') }}" alt="icon description" class="pull-left icon">
+
+                        <div class="textbox">
+                            <h2><a href="#">Request a service</a></h2>
+
+                            <p>
+                                Choose or search from a variety of home services and select the day and time you'd like a verified Provider to show up and choose the one that's right for your job.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- info-box -->
+                    <div class="col-xs-12 col-sm-6 col-md-4 info-box">
+                        <img src="{{ asset('images/icon2.png') }}" alt="icon description" class="pull-left icon">
+
+                        <div class="textbox">
+                            <h2><a href="#">Get matched</a></h2>
+
+                            <p>
+                                Select from a list of qualified and fully vetted Providers for the job. Choose Provider by their hourly rate and pay nominal platform fee seamlessly and securely through the app. Provider will be contacted immediately.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix visible-sm"></div>
+                    <!-- info-box -->
+                    <div class="col-xs-12 col-sm-6 col-md-4 info-box">
+                        <img src="{{ asset('images/icon3.png') }}" alt="icon description" class="pull-left icon">
+
+                        <div class="textbox">
+                            <h2><a href="#">Get it done</a></h2>
+
+                            <p>
+                                Just like that, your Provider arrives and gets the job done. When your task is complete. You will handed over the security code. Write your experiences about provider. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'CocoricoCoreBundle:Frontend/Home:_high_rank.html.twig'  with {
+            'listings': listings
+            } only %}
+
+            {{ render(controller('CocoricoCoreBundle:Frontend/Home:rssFeeds')) }}
+
+        {% endblock %}
+
+        {% block modal %}
+            {% include 'CocoricoCoreBundle:Frontend/Common:_modal.html.twig' only %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#Geocoding #}
+    {% include '@CocoricoCore/Frontend/ListingResult/js/_geocoding_js.html.twig' with {
+    'map_elt': '',
+    'auto_complete_elt': '#location'
+    } only %}
+
+    <script>
+        // Categories
+        $(function () {
+
+            // Set default favourites in the listing
+            setDefaultFavourites();
+
+            initMultiSelect(
+                    '#categories',
+                    '{{ "multiselect.all_selected"|trans({}, "cocorico") }}',
+                    '{{ "multiselect.none_selected"|trans({}, "cocorico") }}',
+                '{{ "multiselect.num_selected"|trans({}, "cocorico") }}'
+            );
+        });
+    </script>
+{% endblock %}
+
+{% block markup_jsonld %}
+    {{ parent() }}
+
+    {% include 'CocoricoSeoBundle:Frontend:Home/_index_markup.jsonld.twig' ignore missing with {
+    'listings': listings
+    } only %}
+{% endblock %}
